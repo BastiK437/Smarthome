@@ -4,25 +4,10 @@
 #include <ir_Lego_PF_BitStreamEncoder.h>
 
 #include <SoftwareSerial.h>
-#include <IRremote.h>
 #include <avr/pgmspace.h>
+#include <String.h>
 
-/*Dokumentation:
-
-   - Parallele Schnittstelle an den Pins 45, 47, 49, 51, 53
-   - Bt Adapter an den Pins 10 und 11 anschließen. RXD (Blau) an Pin 11, TXT (Gruen) an Pin 10
-   - Relais waren angeschlossen an:
-   - Infrarot LEDs sind an der Masse über einen 1k Ohm Widerstand an Pin 3 (Arduino Uno) oder Pin 9 (Arduino MEGA) angeschlossen.
-
-*/
-
-//Teufel Anlage
-const unsigned int tonoff []PROGMEM = {8800, 4400, 500, 550, 550, 550, 500, 600, 500, 600, 500, 550, 550, 1650, 500, 1700, 500, 600, 500, 1650, 500, 600, 500, 1700, 500, 1650, 500, 1700, 500, 600, 500, 550, 550, 1650, 500, 600, 500, 600, 500, 550, 550, 550, 500, 600, 500, 600, 500, 550, 550, 550, 550, 1650, 500, 1700, 500, 1650, 500, 1700, 500, 1650, 550, 1650, 500, 1700, 500, 1650, 550};
-const unsigned int tstumm []PROGMEM = {8750, 4400, 550, 550, 550, 550, 500, 600, 500, 600, 500, 550, 550, 1650, 500, 1700, 500, 600, 500, 1650, 550, 550, 500, 1650, 550, 1650, 500, 1700, 500, 600, 500, 550, 550, 1650, 500, 1700, 500, 550, 550, 550, 550, 550, 500, 600, 500, 550, 550, 550, 550, 550, 500, 550, 550, 1700, 500, 1650, 500, 1650, 550, 1650, 550, 1650, 500, 1650, 550, 1650, 550};
-const unsigned int tsourceh[]PROGMEM = {8850, 4350, 550, 550, 500, 600, 500, 600, 500, 550, 550, 550, 500, 1700, 500, 1650, 550, 550, 500, 1700, 500, 600, 500, 1650, 550, 1650, 500, 1700, 500, 550, 500, 600, 500, 1700, 500, 1650, 550, 550, 500, 600, 500, 1700, 500, 1650, 500, 600, 500, 600, 500, 600, 500, 550, 550, 1650, 500, 1700, 500, 550, 550, 550, 500, 1700, 500, 1650, 500, 1700, 500};
-const unsigned int tsourcer[]PROGMEM = {8850, 4350, 550, 550, 500, 600, 500, 600, 500, 550, 550, 550, 500, 1700, 500, 1650, 550, 550, 550, 1650, 500, 600, 500, 1650, 550, 1650, 500, 1650, 550, 550, 550, 550, 500, 1700, 500, 1650, 550, 550, 500, 1700, 500, 1650, 550, 1650, 500, 600, 500, 550, 550, 550, 550, 550, 500, 1700, 500, 550, 550, 550, 500, 600, 500, 1700, 500, 1650, 500, 1700, 500};
-const unsigned int tlauter[]PROGMEM = {8800, 4400, 550, 550, 500, 600, 500, 600, 500, 550, 550, 550, 500, 1700, 500, 1650, 550, 550, 500, 1700, 500, 600, 500, 1650, 500, 1700, 500, 1650, 550, 550, 500, 600, 500, 1700, 500, 550, 550, 550, 500, 1700, 500, 1650, 550, 1650, 500, 600, 500, 550, 550, 550, 550, 1650, 500, 1700, 500, 550, 550, 550, 500, 600, 500, 1650, 550, 1650, 500, 1700, 500};
-const unsigned int tleiser[]PROGMEM = {8800, 4400, 500, 600, 500, 600, 500, 550, 500, 650, 450, 600, 500, 1650, 550, 1650, 500, 600, 500, 1650, 550, 550, 550, 1650, 500, 1650, 550, 1650, 500, 600, 500, 600, 500, 1650, 550, 550, 500, 1700, 500, 550, 550, 1650, 500, 1700, 500, 600, 500, 600, 450, 600, 500, 1700, 500, 550, 550, 1650, 500, 600, 500, 600, 500, 1650, 500, 1700, 500, 1650, 550};
+//Definitions
 
 #define rxPin 10
 #define txPin 11
@@ -31,6 +16,9 @@ const unsigned int tleiser[]PROGMEM = {8800, 4400, 500, 600, 500, 600, 500, 550,
 #define PIN_BLUETOOTH 7
 
 #define MAX_IR_LENGTH 67
+
+
+//Global Variables
 
 int leiste    = 0;
 int bt        = 0;
@@ -59,491 +47,69 @@ int td        = 100;
 int fextt      = 0;
 int binaer    = 0b00000000;
 
-//Infrarot
-
-IRsend irsend;
-int k = 2;   
-
-//
-
-void lon() {
-  digitalWrite(PIN_PLUG_STRIP, 1);
-  leiste = 1;
-}
-
-void loff() {
-  digitalWrite(PIN_PLUG_STRIP, 0);
-  leiste = 0;
-}
-
-void bton() {
-  digitalWrite(PIN_BLUETOOTH, 1);
-  bt = 1;
-}
-
-void btoff() {
-  digitalWrite(PIN_BLUETOOTH, 0);
-  bt = 0;
-}
-
-void fpon() {
-  digitalWrite(PIN_HARDDISK, 1);
-  fp = 1;
-}
-
-void fpoff() {
-  digitalWrite(PIN_HARDDISK, 0);
-  fp = 0;
-}
-
-//playstation
-
-void pson() {
-  ftools();
-
-  delay(2000);
-
-  fenter();
-
-  delay(1000);
-
-  fenter();
-
-  ps = 1;
-}
-
-void psoff() {
-  ftools();
-
-  delay(1000);
-
-  frunter();
-
-  delay(500);
-
-  fenter();
-
-  delay(2000);
-
-  for (counter2 == 0; counter2 < 10; counter2++) {
-    flinks();
-    delay(100);
-  }
-  counter2 = 0;
-
-  delay(500);
-
-  for (counter3 == 0; counter3 < 6; counter3++) {
-    fhoch();
-    delay(100);
-  }
-  counter3 = 0;
-
-  delay(1000);
-
-  for (counter4 == 0; counter4 < 2; counter4++) {
-    fenter();
-    delay(1000);
-  }
-  counter4 = 0;
-
-  ps = 0;
-}
-
-void leisteaus() {
-
-  if (fernseher == 1) {
-    foff();
-    delay(10000);
-  }
-
-  if (fp == 1) {
-    fpoff();
-    delay(500);
-  }
-
-  if (bt == 1) {
-    btoff();
-    delay(500);
-  }
-  if (anlage == 1) {
-    aoff();
-    delay(1000);
-  }
-
-  loff();
-  al = 50;
-}
-
-void lichtt() {
-  if (licht == 0 && licht1 == 1) {
-    digitalWrite(4, 1);
-    digitalWrite(8, 1);
-    licht = 1;
-  }
-
-  if (licht == 1 && licht1 == 0) {
-    digitalWrite(4, 0);
-    digitalWrite(8, 0);
-    licht = 0;
-  }
-
-  if (licht == 1)licht1 = 0;
-  if (licht == 0)licht1 = 1;
-
-}
-
-//Anlage
-
-void aon() {
-  for (counter = 0; counter < MAX_IR_LENGTH; counter++) {
-    senden[counter] = pgm_read_word_near(tonoff + counter);
-  }
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-  delay(1000);
-  counter = 10;
-
-  while (counter > 0) {
-    irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-    counter--;
-  }
-  anlage = 1;
-}
-
-void aoff() {
-
-  advd();
-  delay(500);
-  for (counter = 0; counter < MAX_IR_LENGTH; counter++) {
-    senden[counter] = pgm_read_word_near(tonoff + counter);
-  }
-
-  counter = 5;
-  while (counter > 0) {
-    irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-    counter--;
-  }
-
-  anlage = 0;
-}
-
-void ash() {
-  for (counter = 0; counter < MAX_IR_LENGTH; counter++) {
-    senden[counter] = pgm_read_word_near(tsourceh + counter);
-  }
-
-  for (counter = 3; counter > 0; counter--) {
-    irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-    counter--;
-  }
-}
-
-void asr() {
-  for (counter = 0; counter < MAX_IR_LENGTH; counter++) {
-    senden[counter] = pgm_read_word_near(tsourcer + counter);
-  }
-
-  for (counter = 3; counter > 0; counter--) {
-    irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-    counter--;
-  }
-}
-
-void advd() {
-  if (tape == 1) {
-    for (counter2 = 1; counter2 > 0; counter2--) {
-      ash();
-      delay(500);
-    }
-    tape = 0;
-  }
-
-  if (aux == 1) {
-    for (counter2 = 2; counter2 > 0; counter2--) {
-      ash();
-      delay(500);
-    }
-    aux = 0;
-  }
-
-  dvd = 1;
-}
-
-void atape() {
-  if (dvd == 1) {
-    for (counter2 = 1; counter2 > 0; counter2--) {
-      asr();
-      delay(500);
-    }
-    dvd = 0;
-  }
-
-  if (aux == 1) {
-    for (counter2 = 1; counter2 > 0; counter2--) {
-      ash();
-      delay(500);
-    }
-    aux = 0;
-  }
-
-  tape = 1;
-}
-
-void aaux() {
-  if (tape == 1) {
-    for (counter2 = 1; counter2 > 0; counter2--) {
-      asr();
-      delay(500);
-    }
-    tape = 0;
-  }
-
-  if (dvd == 1) {
-    for (counter2 = 2; counter2 > 0; counter2--) {
-      asr();
-      delay(500);
-    }
-    dvd = 0;
-  }
-
-  aux = 1;
-}
-
-void alauter() {
-  for (counter = 0; counter < MAX_IR_LENGTH; counter++) {
-    senden[counter] = pgm_read_word_near(tlauter + counter);
-  }
-
-  //   for(counter=3;counter>0;counter--){
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-  //        counter--;
-  //   }
-}
-
-void aleiser() {
-  for (counter = 0; counter < MAX_IR_LENGTH; counter++) {
-    senden[counter] = pgm_read_word_near(tleiser + counter);
-  }
-
-  //   for(counter=3;counter>0;counter--){
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-  //        counter--;
-  //   }
-}
-
-void amute() {
-  for (counter = 0; counter < MAX_IR_LENGTH; counter++) {
-    senden[counter] = pgm_read_word_near(tstumm + counter);
-  }
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-}
-
-void a5() {
-  counter2 = al - 5;
-  al = 5;
-  if (counter2 > 0) {
-    while (counter2 > 0) {
-      alauter();
-      delay(td);
-      counter2--;
-    }
-  }
-  if (counter2 < 0) {
-    while (counter2 < 0) {
-      aleiser();
-      delay(td);
-      counter2++;
-    }
-  }
-}
-
-void a10() {
-  counter2 = al - 10;
-  al = 10;
-  if (counter2 > 0) {
-    while (counter2 > 0) {
-      alauter();
-      delay(td);
-      counter2--;
-    }
-  }
-  if (counter2 < 0) {
-    while (counter2 < 0) {
-      aleiser();
-      delay(td);
-      counter2++;
-    }
-  }
-}
-
-void a15() {
-  counter2 = al - 15;
-  al = 15;
-  if (counter2 > 0) {
-    while (counter2 > 0) {
-      alauter();
-      delay(td);
-      counter2--;
-    }
-  }
-  if (counter2 < 0) {
-    while (counter2 < 0) {
-      aleiser();
-      delay(td);
-      counter2++;
-    }
-  }
-}
-
-void a20() {
-  counter3 = al - 20;
-  al = 20;
-  if (counter3 > 0) {
-    while (counter3 > 0) {
-      alauter();
-      delay(td);
-      counter3--;
-    }
-  }
-
-  if (counter3 < 0) {
-    while (counter3 < 0) {
-      aleiser();
-      delay(td);
-      counter3++;
-    }
-  }
-}
-
-void a25() {
-  counter2 = al - 25;
-  al = 25;
-  if (counter2 > 0) {
-    while (counter2 > 0) {
-      alauter();
-      delay(td);
-      counter2--;
-    }
-  }
-  if (counter2 < 0) {
-    while (counter2 < 0) {
-      aleiser();
-      delay(td);
-      counter2++;
-    }
-  }
-}
-
-void a30() {
-  counter2 = al - 30;
-  al = 30;
-  if (counter2 > 0) {
-    while (counter2 > 0) {
-      alauter();
-      delay(td);
-      counter2--;
-    }
-  }
-  if (counter2 < 0) {
-    while (counter2 < 0) {
-      aleiser();
-      delay(td);
-      counter2++;
-    }
-  }
-}
-
-void a35() {
-  counter2 = al - 35;
-  al = 35;
-  if (counter2 > 0) {
-    while (counter2 > 0) {
-      alauter();
-      delay(td);
-      counter2--;
-    }
-  }
-  if (counter2 < 0) {
-    while (counter2 < 0) {
-      aleiser();
-      delay(td);
-      counter2++;
-    }
-  }
-}
-
-void a40() {
-  counter2 = al - 40;
-  al = 40;
-  if (counter2 > 0) {
-    while (counter2 > 0) {
-      alauter();
-      delay(td);
-      counter2--;
-    }
-  }
-  if (counter2 < 0) {
-    while (counter2 < 0) {
-      aleiser();
-      delay(td);
-      counter2++;
-    }
-  }
-}
-
-void a45() {
-  counter2 = al - 45;
-  al = 45;
-  if (counter2 > 0) {
-    while (counter2 > 0) {
-      alauter();
-      delay(td);
-      counter2--;
-    }
-  }
-  if (counter2 < 0) {
-    while (counter2 < 0) {
-      aleiser();
-      delay(td);
-      counter2++;
-    }
-  }
-}
-
-void a50() {
-  counter2 = al - 50;
-  al = 50;
-  if (counter2 > 0) {
-    while (counter2 > 0) {
-      alauter();
-      delay(td);
-      counter2--;
-    }
-
-  }
-  if (counter2 < 0) {
-    while (counter2 < 0) {
-      aleiser();
-      delay(td);
-      counter2++;
-    }
-  }
-}
-
-
 SoftwareSerial btSerial(rxPin, txPin);
 String btData;
 
-void eingabe() {
+//Infrarot
+IRsend irsend;
+int k = 2;   
+
+//Prototypes
+//music system
+void turnMusicsystemOn();
+void turnMusicsystemOff();
+void setSourceDVD();
+void setSourceAux();
+void setSourceTape();
+void sourceOneUp();
+void sourceOneDown();
+void volumeOneUp();
+void volumeOneDown();
+void setVolume(int);
+void setVolumeMute();
+//TV
+void fpon();
+void frec();
+void fleiser();
+void flauter();
+void fsource();
+void fmute();
+void fguide();
+void fsmarthub();
+void fhoch();
+void frunter();
+void frechts();
+void flinks();
+void ftools();
+void fenter();
+void fstop();
+void fplay();
+void fpause();
+void freturn();
+void finfo();
+void feins();
+void fzwei();
+void fdrei();
+void fvier();
+void ffuenf();
+void fsechs();
+void fsieben();
+void facht();
+void fneun();
+void fnull();
+void fon();
+void foff();
+void flaut();
+void fext();
+void fint();
+
+void readVoiceInput() {
   binaer = 0;
-  /*
-    if(digitalRead(53)==HIGH)binaer=binaer|0b00000001;
-    if(digitalRead(51)==HIGH)binaer=binaer|0b00000010;
-    if(digitalRead(49)==HIGH)binaer=binaer|0b00000100;
-    if(digitalRead(47)==HIGH)binaer=binaer|0b00001000;
-    if(digitalRead(45)==HIGH)binaer=binaer|0b00010000;
-  */
+  if(digitalRead(53)==HIGH)binaer=binaer|0b00000001;
+  if(digitalRead(51)==HIGH)binaer=binaer|0b00000010;
+  if(digitalRead(49)==HIGH)binaer=binaer|0b00000100;
+  if(digitalRead(47)==HIGH)binaer=binaer|0b00001000;
+  if(digitalRead(45)==HIGH)binaer=binaer|0b00010000;
 }
 
 void setup() {
@@ -573,142 +139,60 @@ void setup() {
 }
 
 void loop() {
-
-
-
-  //if(i==0){
-  //  for(int counter = 0; counter < MAX_IR_LENGTH; counter++)
-  //{
-  //  Serial.println(senden[counter]);
-  //  i=1;
-  //}
-  //}
-  eingabe();
-
+  //Input voice control
+  //readVoiceInput();
 
   if (btSerial.available() || binaer != 0) {
     btData = btSerial.readString();
-    if (btData == "leiste aus" || binaer == 5) {
-      leisteaus();
 
-      delay(1000);
-
-      btSerial.println("Steckdosenleiste ist aus");
-    }
-    if (btData == "leiste an" || binaer == 2) {
-      lon();
-      btSerial.println("Steckdosenleiste ist an");
-    }
-    if (btData == "festplatte aus" || btData == "Festplatte aus" || binaer == 29) {
-      if (record == 1) {
-        fstop();
-        delay(1000);
-      }
-      fpoff();
-      btSerial.println("Festplatte ist aus");
-      fenter();
-    }
-
-    if (btData == "festplatte an" || btData == "Festplatte an" || binaer == 28) {
-      lon();
-      fpon();
-
-      btSerial.println("Festplatte ist an");
-    }
-    if (btData == "bt aus" || binaer == 22) {
-      btoff();
-      aoff();
-      btSerial.println("Bluetooth Empfänger aus");
-    }
-    if (btData == "bt an" || binaer == 21) {
-      lon();
-      bton();
-      if (anlage == 0) {
-        aon();
-        delay(1500);
-      }
-      if (tape == 0) {
-        atape();
-        delay(1000);
-      }
-      a20();
-      btSerial.println("Bluetooth Empfänger an");
-    }
-
+    //Anlage
     if (btData == "anlage an" || binaer == 19) {
-      if (leiste == 0)lon();
-
-      delay(1000);
-
-      aon();
-      btSerial.println("Die Anlage ist jetzt an");
+      btSerial.println("Die Anlage wird angemacht");
+      turnMusicsystemOn();
     }
-
     if (btData == "anlage aus" || binaer == 20) {
-      aoff();
+      turnMusicsystemOff();
       btSerial.println("Die Anlage wird ausgemacht");
     }
-
     if (btData == "source h" || binaer == 32) {
-      ash();
-
+      sourceOneUp();
       btSerial.println("Source eins nach oben");
     }
-
     if (btData == "source r" || binaer == 31) {
-      asr();
-
+      sourceOneDown();
       btSerial.println("Source eins nach unten");
     }
-
     if (btData == "dvd") {
-      if (leiste == 0) {
-        lon();
-        delay(100);
-      }
       if (anlage == 0) {
-        aon();
+        turnMusicsystemOn();
         delay(2000);
       }
-      advd();
+      setSourceDVD();
     }
-
     if (btData == "tape") {
-      if (leiste == 0) {
-        lon();
-        delay(100);
-      }
       if (anlage == 0) {
-        aon();
+        turnMusicsystemOn();
         delay(2000);
       }
-      atape();
+      setSourceTape();
     }
-
     if (btData == "aux" || binaer == 23) {
-      if (leiste == 0) {
-        lon();
-        delay(500);
-      }
       if (anlage == 0) {
-        aon();
+        turnMusicsystemOn();
         delay(2000);
       }
-      aaux();
-
-      a30();
+      setSourceAux();
+      setVolume(30);
     }
-
     if (btData == "alauter") {
-      alauter();
+      volumeOneUp();
     }
-
     if (btData == "aleiser") {
-      aleiser();
+      volumeOneDown();
     }
 
     if( btData == "amute"){
-      amute();
+      setVolumeMute();
     }
 
     if (btData == "ext" || binaer == 24) {
@@ -724,159 +208,96 @@ void loop() {
 
     }
 
+    if(btData == "amax"){
+      setVolume(1);
+    }
     if (btData == "a5" || binaer == 9) {
-      a5();
+      setVolume(5);
     }
-
     if (btData == "a10" || binaer == 10) {
-      a10();
+      setVolume(10);
     }
-
     if (btData == "a15" || binaer == 11) {
-      a15();
+      setVolume(15);
     }
-
     if (btData == "a20" || binaer == 12) {
-      a20();
+      setVolume(20);
     }
-
     if (btData == "a25" || binaer == 13) {
-      a25();
+      setVolume(25);
     }
-
     if (btData == "a30" || binaer == 14) {
-      a30();
+      setVolume(30);
     }
-
     if (btData == "a35" || binaer == 15) {
-      a35();
+      setVolume(35);
     }
-
     if (btData == "a40" || binaer == 16) {
-      a40();
+      setVolume(40);
     }
-
     if (btData == "a45" || binaer == 17) {
-      a45();
+      setVolume(45);
     }
-
     if (btData == "a50" || binaer == 18) {
-      a50();
+      setVolume(50);
     }
-
+    
     if (btData == "fernseher an" || binaer == 3) {
-      if (leiste == 0) {
-        leiste = PIN_PLUG_STRIP;
-        digitalWrite(PIN_PLUG_STRIP, 1);
-        delay(2000);
-      }
-
       fon();
       btSerial.println("Der Fernseher wird angemacht");
     }
 
     if (btData == "fernseher aus" || binaer == 6) {
-
       foff();
       btSerial.println("Der Fernseher ist nun aus");
     }
 
-    if (btData == "netflix") {
-      if (fernseher == 0) {
-        fon();
-        delay(60000);
-      }
-
-      fsmarthub();
-
-    }
-
     if (btData == "p0") {
-      if (leiste == 0) {
-        lon();
-        delay(2000);
-      }
       fnull();
       btSerial.println("0");
     }
 
     if (btData == "p1") {
-      if (leiste == 0) {
-        lon();
-        delay(2000);
-      }
       feins();
       btSerial.println("1");
     }
 
     if (btData == "p2") {
-      if (leiste == 0) {
-        lon();
-        delay(2000);
-      }
       fzwei();
       btSerial.println("2");
     }
 
     if (btData == "p3") {
-      if (leiste == 0) {
-        lon();
-        delay(2000);
-      }
       fdrei();
       btSerial.println("3");
     }
 
     if (btData == "p4") {
-      if (leiste == 0) {
-        lon();
-        delay(2000);
-      }
       fvier();
       btSerial.println("4");
     }
 
     if (btData == "p5") {
-      if (leiste == 0) {
-        lon();
-        delay(2000);
-      }
       ffuenf();
       btSerial.println("5");
     }
 
     if (btData == "p6") {
-      if (leiste == 0) {
-        lon();
-        delay(2000);
-      }
       fsechs();
       btSerial.println("6");
     }
 
     if (btData == "p7") {
-      if (leiste == 0) {
-        lon();
-        delay(2000);
-      }
       fsieben();
       btSerial.println("7");
     }
 
     if (btData == "p8") {
-      if (leiste == 0) {
-        lon();
-        delay(2000);
-      }
       facht();
       btSerial.println("8");
     }
 
     if (btData == "p9") {
-      if (leiste == 0) {
-        lon();
-        delay(2000);
-      }
       fneun();
       btSerial.println("9");
     }
@@ -1017,7 +438,6 @@ void loop() {
         case 10:
           vcounter = 10;
           break;
-
       }
       if (volume > 0)flauter();
       if (volume < 0)fleiser();
@@ -1033,72 +453,11 @@ void loop() {
       frec();
     }
 
-    if (btData == "ps3 an" || binaer == 7) {
-      if (leiste == 0) {
-        lon();
-        delay(1000);
-      }
-      if (fernseher == 0) {
-        fon();
-        delay(25000);
-      }
-      pson();
-
-      btSerial.println("Ps3 wird angeschalten");
-    }
-
-    if (btData == "ps3 aus" || binaer == 8) {
-      psoff();
-
-      btSerial.println("Ps3 wird ausgeschalten");
-    }
-
     if (btData == "ppause" || binaer == 26) {
       fpause();
     }
 
-    if (btData == "amazon" || binaer == 4) {
-      btSerial.println("Amazon wird gestartet");
-
-      if (leiste == 0) {
-        lon();
-        delay(3000);
-      }
-      if (fernseher == 0) {
-        fon();
-        delay(25000);
-      }
-      if (ps == 0) {
-        pson();
-        delay(30000);
-      }
-      for (counter2 = 0; counter2 < 3; counter2++) {
-        flinks();
-        delay(400);
-      }
-      delay(2500);
-      frunter();
-      delay(800);
-      fenter();
-    }
-
-    if (btData == "licht" || btData == "Licht" || binaer == 1) {
-      lichtt();
-      if (licht == 1) {
-        btSerial.println("Relais ist an");
-      }
-      if (licht == 0) {
-        btSerial.println("Relais ist aus");
-      }
-      btData = "nix";
-    }
-
-    if (btData == "gute nacht") {
-      leisteaus();
-      lichtt();
-    }
-
-    if (btData == "hilfe") {
+    if (btData == "hilfe" || btData == "help" || btData == "-h") {
       btSerial.println("-----------------------------------");
       btSerial.println("- leiste an/aus");
       btSerial.println("- festplatte an/aus");
@@ -1140,22 +499,6 @@ void loop() {
       btSerial.println("-----------------------------------");
       btSerial.println("");
     }
-
-    if (btData == "sleep timer") {
-      btSerial.println("Die Leiste geht in 10 Minuten aus");
-      delay(120000);
-      btSerial.println("Noch 8 Minuten");
-      delay(120000);
-      btSerial.println("Noch 6 Minuten");
-      delay(120000);
-      btSerial.println("Noch 4 Minuten");
-      delay(120000);
-      btSerial.println("Noch 2 Minuten");
-      delay(120000);
-
-      leisteaus();
-    }
-
 
     if (btData == "ps3 ist an") {
       ps = 1;

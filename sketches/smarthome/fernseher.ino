@@ -309,23 +309,14 @@ void fon() {
 }
 
 void foff() {
-
-  if (ps == 1) {
-    psoff();
-    delay(13000);
-    ps = 0;
-  }
-
   if (fextt == 1) {
     fint();
     delay(1000);
     fextt = 0;
   }
-
   for (counter = 0; counter < 67; counter++) {
     senden[counter] = pgm_read_word_near(onoff + counter);
   }
-
   irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
 
   fernseher = 0;
@@ -367,12 +358,12 @@ void flaut() {
 
 void fext() {
   if (anlage == 0) {
-    aon();
+    turnMusicsystemOn();
     delay(1000);
   }
-  a20();
+  setVolume(20);
   delay(500);
-  advd();
+  setSourceDVD();
   delay(500);
   flaut();
 
@@ -381,7 +372,7 @@ void fext() {
 void fint() {
   flaut();
   if (anlage == 1) {
-    aoff();
+    turnMusicsystemOff();
     delay(200);
   }
 }
