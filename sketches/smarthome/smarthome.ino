@@ -105,10 +105,7 @@ int binaer    = 0b00000000;
 //Infrarot
 
 IRsend irsend;
-
-int k = 2;
-
-int khz = 38;
+int k = 2;   
 
 //
 
