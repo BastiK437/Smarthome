@@ -1,0 +1,41 @@
+anlage ist an
+ps3 ist an
+fernseher ist an
+
+gute nacht
+licht
+amazon
+
+pplay
+ppause
+ps3 aus
+ps3 an
+
+rec
+z.b. -5 
+stop
+play
+pause
+source
+runter
+hoch
+rechts
+links
+zurück||return
+enter
+mute
+guide
+info
+z.b. p8
+fernseher aus
+fernseher an
+
+source h
+source r
+anlage aus/an
+musik
+
+bt an/aus
+festplatte an/aus
+leiste an/aus
+

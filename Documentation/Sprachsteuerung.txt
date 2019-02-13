@@ -1,0 +1,25 @@
+Licht=1
+Leiste an=2
+Fernseher an=3
+amazoon = 4
+leiste aus=5
+fernseher aus=6
+ps3 an=7
+ps3 aus=8
+anlage 5 = 9
+anlage 10 = 10
+...
+anlage 50=18
+anlage an= 19
+anlage aus=20
+bluetooth an = 21
+bluetooth aus = 22
+computer = 23
+extern = 24
+intern = 25
+pause = 26
+play = 27
+festplatte an = 28
+festplatte aus = 29
+quelle hoch = 30
+quelle runter = 31
