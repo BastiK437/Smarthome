@@ -16,51 +16,6 @@
 
 */
 
-//Samsung Fernseher
-
-//const unsigned int onoff[] PROGMEM = {4500, 4450, 550, 1700, 500, 1700, 550, 1700, 500, 600, 550, 550, 550, 600, 500, 600, 500, 600, 550, 1700, 500, 1700, 500, 1700, 550, 600, 500, 600, 500, 600, 550, 550, 550, 550, 550, 550, 550, 1700, 550, 550, 550, 600, 500, 600, 500, 600, 550, 550, 550, 550, 550, 1700, 550, 600, 500, 1650, 550, 1700, 550, 1700, 500, 1700, 550, 1650, 550, 1700, 550}; //AnalysIR Batch Export - RAW
-//const unsigned int eins[]  PROGMEM = {4500, 4450, 550, 1650, 550, 1650, 550, 1650, 550, 550, 550, 600, 500, 550, 550, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 550, 550, 550, 550, 550, 550, 550, 550, 550, 1650, 550, 550, 550, 550, 550, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 600, 500, 1700, 550, 1650, 550, 1700, 500, 1650, 550, 1650, 550};
-//const unsigned int zwei[]  PROGMEM = {4500, 4450, 500, 1700, 500, 1700, 500, 1700, 500, 600, 550, 550, 550, 550, 550, 550, 550, 550, 550, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 600, 500, 1700, 500, 600, 500, 600, 550, 550, 550, 550, 550, 550, 550, 550, 550, 1700, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 1700, 500, 1700, 500};
-//const unsigned int drei[]  PROGMEM = {4500, 4400, 550, 1650, 550, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 550, 550, 550, 550, 550, 550, 550, 550, 550, 600, 500, 600, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 600, 550, 550, 550, 1650, 550, 1650, 550, 1700, 500, 1700, 500, 1700, 500};
-//const unsigned int vier[]  PROGMEM = {4500, 4450, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 550, 1650, 550, 1650, 550, 1650, 550, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 550, 1650, 550, 1700, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 1700, 500};
-//const unsigned int fuenf[] PROGMEM = {4500, 4450, 500, 1700, 500, 1700, 550, 1650, 550, 550, 550, 550, 550, 550, 550, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 550, 550, 550, 550, 550, 1650, 550, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 600, 500, 1700, 550, 1650, 550, 1650, 550, 1650, 550};
-//const unsigned int sechs[] PROGMEM = {4500, 4450, 550, 1650, 550, 1650, 550, 1650, 550, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 550, 550, 550, 550, 550, 1650, 550, 600, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 600, 500, 1700, 500, 600, 500, 1700, 550, 1650, 550, 1700, 500, 1700, 500};
-//const unsigned int sieben[]PROGMEM = {4500, 4400, 550, 1650, 550, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 550, 1650, 550, 550, 550, 550, 550, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 550, 550, 550, 1650, 550, 1650, 550, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 1700, 500};
-//const unsigned int acht [] PROGMEM = {4500, 4450, 500, 1700, 550, 1650, 550, 1650, 550, 550, 550, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 550, 550, 550, 1650, 550, 600, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 600, 550, 550, 500, 1700, 550, 1700, 500, 1700, 500, 1700, 500};
-//const unsigned int neun [] PROGMEM = {4500, 4450, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 550, 1650, 550, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 550, 550, 550, 550, 550, 600, 500, 600, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 1700, 550};
-//const unsigned int zero [] PROGMEM = {4500, 4450, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 550, 1650, 550, 1650, 550, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 1700, 550, 550, 550, 550, 550, 550, 550, 600, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 1700, 500, 1700, 500, 1700, 550};
-//const unsigned int source[]PROGMEM = {4500, 4400, 550, 1650, 550, 1650, 550, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 600, 550, 550, 550, 550, 550, 550, 550, 550, 550, 1650, 550, 550, 550, 550, 550, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 550, 1650, 550, 1650, 550, 1650, 550, 1650, 550};
-//const unsigned int txt []  PROGMEM = {4500, 4400, 550, 1650, 550, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 550, 1650, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 600, 500, 600, 500, 1700, 500, 1700, 500, 600, 500, 1700, 500, 600, 550, 550, 500, 1700, 550, 1650, 550, 550, 550, 550, 550, 1650, 550, 600, 500, 1700, 500, 1700, 500};
-//const unsigned int mute [] PROGMEM = {4500, 4400, 550, 1650, 550, 1650, 550, 1650, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 1650, 550, 1700, 500, 1700, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 1650, 550, 1650, 550, 1650, 550, 1650, 550, 550, 550, 600, 500, 600, 500, 600, 500, 600, 550, 550, 550, 550, 550, 550, 550, 1650, 550, 1650, 550, 1650, 550, 1650, 550};
-//const unsigned int lauter []PROGMEM = {4450, 4450, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 550, 1650, 550, 1650, 550, 1650, 550, 550, 550, 550, 550, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 550, 550, 550, 550, 550, 550, 550, 550, 550, 1650, 550, 1700, 500, 1700, 500, 1700, 500, 1750, 450};
-//const unsigned int leiser []PROGMEM = {4450, 4400, 550, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 550, 1650, 550, 1650, 550, 550, 550, 550, 550, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 600, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 550, 550, 550, 550, 550, 1650, 550, 550, 550, 1700, 500, 1700, 500, 1700, 500, 1700, 500};
-//const unsigned int phoch [] PROGMEM = {4450, 4400, 550, 1700, 550, 1650, 550, 1650, 550, 550, 550, 600, 500, 550, 550, 550, 550, 550, 550, 1650, 550, 1650, 550, 1650, 550, 550, 550, 600, 500, 600, 500, 600, 500, 600, 550, 550, 550, 1650, 550, 550, 550, 550, 550, 1650, 550, 600, 500, 600, 500, 550, 550, 1650, 550, 600, 500, 1700, 500, 1700, 500, 600, 500, 1700, 550, 1650, 550, 1700, 500};
-//const unsigned int prunter[]PROGMEM = {4450, 4400, 550, 1650, 550, 1650, 550, 1700, 500, 550, 550, 550, 550, 550, 550, 550, 550, 600, 500, 1700, 550, 1650, 550, 1650, 550, 550, 550, 550, 550, 550, 550, 600, 500, 550, 550, 550, 550, 550, 550, 600, 500, 600, 500, 1650, 550, 550, 550, 600, 500, 600, 500, 1700, 550, 1650, 550, 1650, 550, 1650, 550, 600, 500, 1700, 500, 1650, 550, 1650, 550};
-//const unsigned int menu []  PROGMEM = {4450, 4450, 550, 1650, 550, 1650, 550, 1650, 550, 550, 550, 550, 550, 550, 550, 600, 500, 550, 550, 1650, 550, 1650, 550, 1650, 550, 550, 550, 600, 500, 600, 500, 600, 500, 600, 550, 550, 550, 1650, 550, 550, 550, 1700, 500, 1650, 550, 550, 550, 550, 550, 550, 550, 1650, 550, 550, 550, 1650, 550, 600, 500, 600, 500, 1700, 550, 1650, 550, 1650, 550};
-//const unsigned int smarthub[]PROGMEM = {4450, 4450, 550, 1650, 550, 1650, 550, 1650, 550, 550, 550, 600, 500, 550, 550, 550, 550, 550, 550, 1650, 550, 1650, 550, 1700, 500, 600, 550, 550, 550, 550, 550, 550, 550, 550, 550, 1650, 550, 600, 500, 550, 550, 1700, 500, 1650, 550, 1700, 500, 1700, 500, 600, 550, 550, 550, 1650, 550, 1650, 550, 550, 550, 600, 500, 600, 500, 600, 500, 1700, 500};
-//const unsigned int guide [] PROGMEM = {4450, 4400, 550, 1700, 550, 1650, 550, 1650, 550, 550, 550, 550, 550, 600, 500, 600, 500, 600, 500, 1650, 550, 1700, 500, 1650, 550, 600, 500, 600, 500, 600, 550, 550, 550, 550, 550, 1650, 550, 1700, 500, 1700, 500, 1700, 500, 550, 550, 600, 500, 1700, 500, 600, 500, 600, 500, 600, 550, 550, 500, 600, 550, 1650, 550, 1650, 550, 550, 550, 1700, 500};
-//const unsigned int tools [] PROGMEM = {4450, 4450, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 550, 550, 550, 1650, 550, 1650, 550, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 600, 500, 1700, 500, 600, 550, 550, 550, 1650, 550, 550, 550, 600, 500, 600, 500, 1700, 500, 600, 500, 1700, 500, 1700, 500, 600, 500, 1700, 500};
-//const unsigned int info []  PROGMEM = {4450, 4450, 500, 1700, 550, 1650, 550, 1650, 550, 550, 550, 550, 550, 550, 550, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 550, 550, 550, 1650, 550, 1650, 550, 1650, 550, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 550, 1650, 550, 1650, 550, 1650, 550};
-//const unsigned int sreturn[]PROGMEM = {4400, 4450, 500, 1700, 550, 1700, 500, 1650, 550, 550, 550, 600, 500, 550, 550, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 550, 550, 600, 500, 600, 500, 600, 500, 600, 550, 550, 550, 550, 550, 550, 550, 1650, 550, 1700, 500, 600, 500, 1700, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 1700, 550, 550, 550, 1700, 500};
-//const unsigned int sexit [] PROGMEM = {4450, 4400, 550, 1650, 550, 1650, 550, 1650, 550, 550, 550, 550, 550, 550, 550, 600, 500, 550, 550, 1700, 550, 1650, 550, 1650, 550, 550, 550, 550, 550, 550, 550, 550, 550, 600, 500, 1700, 500, 600, 500, 1700, 500, 1700, 500, 600, 500, 1700, 500, 600, 550, 550, 550, 550, 550, 1700, 500, 550, 550, 550, 550, 1700, 500, 600, 500, 1700, 500, 1700, 500};
-//const unsigned int links [] PROGMEM = {4400, 4450, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 650, 450, 600, 550, 550, 550, 600, 500, 1700, 500, 1650, 550, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 600, 500, 1700, 550, 550, 550, 550, 550, 1650, 550, 1700, 500, 550, 550, 600, 500, 1700, 500, 600, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 1700, 550};
-//const unsigned int hoch []  PROGMEM = {4450, 4450, 500, 1650, 550, 1700, 500, 1700, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 1700, 500, 1650, 550, 1650, 550, 600, 500, 550, 550, 600, 500, 600, 500, 600, 500, 600, 550, 550, 550, 550, 550, 550, 550, 550, 550, 1650, 550, 1700, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 1700, 500, 1700, 550, 550, 550, 550, 550, 1650, 550};
-//const unsigned int rechts []PROGMEM = {4450, 4450, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 550, 550, 550, 1650, 550, 1650, 550, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 600, 500, 600, 550, 550, 550, 1650, 550, 1650, 550, 550, 550, 1700, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 1700, 550};
-//const unsigned int runter []PROGMEM = {4450, 4400, 550, 1650, 550, 1650, 550, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 550, 1650, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 550, 550, 550, 550, 550, 1650, 550, 1650, 550, 1700, 500, 1700, 500, 600, 500, 600, 500, 1700, 500};
-//const unsigned int enter [] PROGMEM = {4500, 4400, 550, 1700, 500, 1650, 550, 1650, 550, 550, 550, 550, 550, 600, 500, 600, 550, 550, 550, 1650, 550, 1650, 550, 1650, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 600, 500, 1700, 550, 550, 550, 1650, 550, 1650, 550, 550, 550, 1650, 550, 1650, 550, 1700, 500, 550, 550, 1700, 500, 600, 500, 600, 550, 1650, 550};
-//const unsigned int a []     PROGMEM = {4450, 4450, 500, 1700, 500, 1700, 500, 1700, 500, 600, 550, 550, 550, 550, 550, 550, 550, 550, 550, 1650, 550, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 550, 1650, 550, 550, 550, 1650, 550, 1650, 550, 600, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 1700, 500, 600, 500, 600, 500, 1700, 550};
-//const unsigned int b []     PROGMEM = {4500, 4400, 550, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 550, 1650, 550, 1650, 550, 550, 550, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 600, 500, 1700, 500, 650, 450, 650, 500, 550, 550, 1700, 500, 1650, 550, 600, 500, 1700, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500};
-//const unsigned int c []     PROGMEM = {4450, 4450, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 550, 550, 550, 550, 550, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 600, 500, 1700, 550, 550, 550, 1650, 550, 550, 550, 600, 500, 600, 500, 600, 500, 1700, 500, 600, 500, 1700, 500, 650, 450, 1700, 500, 1700, 550, 1650, 550};
-//const unsigned int d []     PROGMEM = {4450, 4450, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 550, 1650, 550, 1650, 550, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 600, 550, 1650, 550, 550, 550, 550, 550, 600, 500, 1700, 500, 600, 500, 600, 500, 1700, 500, 600, 500, 1700, 500, 1700, 500, 1700, 550};
-//const unsigned int rec []   PROGMEM = {4450, 4400, 550, 1700, 550, 1650, 550, 1650, 550, 550, 550, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 550, 550, 550, 550, 550, 550, 550, 1700, 500, 550, 550, 600, 500, 1700, 500, 600, 500, 600, 500, 1700, 500, 600, 500, 600, 500, 1700, 550, 1650, 550, 550, 550, 1650, 550, 1650, 550, 600, 500, 1700, 500};
-//const unsigned int dreid [] PROGMEM = {4450, 4450, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 550, 550, 550, 1650, 550, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 550, 1650, 550, 1700, 500, 1700, 500, 600, 500, 600, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 550, 1650, 550, 1650, 550, 600, 500};
-//const unsigned int subt []  PROGMEM = {4450, 4400, 550, 1700, 500, 1700, 500, 1700, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 1650, 550, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 550, 550, 500, 1700, 550, 550, 550, 1650, 550, 550, 550, 600, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 600, 550, 1650, 550, 1650, 550, 550, 550, 1700, 500, 1700, 500};
-//const unsigned int stopp [] PROGMEM = {4500, 4450, 500, 1700, 500, 1700, 550, 1650, 550, 550, 550, 550, 550, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 550, 550, 550, 550, 550, 550, 550, 550, 550, 1650, 550, 1700, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 600, 550, 1650, 550, 550, 550, 600, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 1700, 500};
-//const unsigned int zspulen[]PROGMEM = {4400, 4450, 500, 1700, 550, 1650, 550, 1650, 550, 550, 550, 550, 550, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 500, 1700, 550, 550, 550, 550, 550, 550, 550, 600, 500, 600, 500, 1700, 500, 600, 500, 1700, 500, 550, 550, 550, 550, 600, 500, 1700, 550, 550, 550, 550, 550, 1700, 500, 600, 500, 1700, 500, 1700, 500, 1700, 500, 600, 500, 1700, 550};
-//const unsigned int play []  PROGMEM = {4450, 4400, 550, 1700, 500, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 550, 1650, 550, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 550, 1650, 550, 550, 550, 600, 500, 600, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 1700, 550, 1650, 550, 600, 500, 1700, 500};
-//const unsigned int pause [] PROGMEM = {4500, 4400, 550, 1650, 550, 1700, 500, 1700, 500, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 550, 1650, 550, 1650, 550, 550, 550, 600, 500, 600, 500, 600, 500, 600, 500, 600, 500, 1700, 500, 600, 500, 1700, 550, 550, 550, 550, 550, 1650, 550, 550, 550, 1700, 500, 600, 500, 1700, 500, 600, 500, 1700, 550, 1650, 550, 550, 550, 1650, 550};
-//const unsigned int vspulen[]PROGMEM = {4450, 4400, 550, 1700, 500, 1700, 500, 1650, 550, 550, 550, 550, 550, 600, 550, 550, 550, 550, 550, 1650, 550, 1650, 550, 1650, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 550, 600, 500, 600, 500, 600, 550, 1650, 550, 550, 550, 550, 550, 1650, 550, 550, 550, 1650, 550, 1650, 550, 1700, 550, 550, 550, 1650, 550, 1650, 550, 550, 550, 1650, 550};
-
 //Teufel Anlage
 const unsigned int tonoff []PROGMEM = {8800, 4400, 500, 550, 550, 550, 500, 600, 500, 600, 500, 550, 550, 1650, 500, 1700, 500, 600, 500, 1650, 500, 600, 500, 1700, 500, 1650, 500, 1700, 500, 600, 500, 550, 550, 1650, 500, 600, 500, 600, 500, 550, 550, 550, 500, 600, 500, 600, 500, 550, 550, 550, 550, 1650, 500, 1700, 500, 1650, 500, 1700, 500, 1650, 550, 1650, 500, 1700, 500, 1650, 550};
 const unsigned int tstumm []PROGMEM = {8750, 4400, 550, 550, 550, 550, 500, 600, 500, 600, 500, 550, 550, 1650, 500, 1700, 500, 600, 500, 1650, 550, 550, 500, 1650, 550, 1650, 500, 1700, 500, 600, 500, 550, 550, 1650, 500, 1700, 500, 550, 550, 550, 550, 550, 500, 600, 500, 550, 550, 550, 550, 550, 500, 550, 550, 1700, 500, 1650, 500, 1650, 550, 1650, 550, 1650, 500, 1650, 550, 1650, 550};
@@ -71,9 +26,11 @@ const unsigned int tleiser[]PROGMEM = {8800, 4400, 500, 600, 500, 600, 500, 550,
 
 #define rxPin 10
 #define txPin 11
-#define l 5
-#define f 6
-#define b 7
+#define PIN_PLUG_STRIP 5
+#define PIN_HARDDISK 6
+#define PIN_BLUETOOTH 7
+
+#define MAX_IR_LENGTH 67
 
 int leiste    = 0;
 int bt        = 0;
@@ -96,7 +53,7 @@ int vcounter  = 0;
 int dvd       = 1;
 int tape      = 0;
 int aux       = 0;
-int senden[67];
+int senden[MAX_IR_LENGTH];
 int al        = 50;
 int td        = 100;
 int fextt      = 0;
@@ -110,379 +67,33 @@ int k = 2;
 //
 
 void lon() {
-  digitalWrite(l, 1);
+  digitalWrite(PIN_PLUG_STRIP, 1);
   leiste = 1;
 }
 
 void loff() {
-  digitalWrite(l, 0);
+  digitalWrite(PIN_PLUG_STRIP, 0);
   leiste = 0;
 }
 
 void bton() {
-  digitalWrite(b, 1);
+  digitalWrite(PIN_BLUETOOTH, 1);
   bt = 1;
 }
 
 void btoff() {
-  digitalWrite(b, 0);
+  digitalWrite(PIN_BLUETOOTH, 0);
   bt = 0;
 }
 
 void fpon() {
-  digitalWrite(f, 1);
+  digitalWrite(PIN_HARDDISK, 1);
   fp = 1;
 }
 
 void fpoff() {
-  digitalWrite(f, 0);
+  digitalWrite(PIN_HARDDISK, 0);
   fp = 0;
-}
-
-//Fernseher
-
-void frec() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(rec + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-}
-
-void fleiser() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(leiser + counter);
-  }
-
-  while (vcounter > 0) {
-    irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-    vcounter--;
-    delay(200);
-  }
-}
-
-void flauter() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(lauter + counter);
-  }
-
-  while (vcounter > 0) {
-    irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-    vcounter--;
-    delay(200);
-  }
-}
-
-void fsource() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(source + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-}
-
-void fmute() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(mute + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-}
-
-void fguide() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(guide + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-}
-
-void fsmarthub() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(smarthub + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-}
-
-
-void fhoch() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(hoch + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-}
-
-void frunter() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(runter + counter);
-  }
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-}
-
-void frechts() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(rechts + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-}
-
-void flinks() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(links + counter);
-  }
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-}
-
-void ftools() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(tools + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-}
-
-void fenter() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(enter + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-}
-
-void fstop() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(stopp + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-  delay(500);
-  flinks();
-  delay(500);
-  fenter();
-}
-
-void fplay() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(play + counter);
-  }
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-}
-
-void fpause() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(pause + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-}
-
-void freturn() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(sreturn + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-}
-
-void finfo() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(info + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-}
-
-void feins() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(eins + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-  fernseher = 1;
-}
-void fzwei() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(zwei + counter);
-  }
-
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-  fernseher = 1;
-}
-
-void fdrei() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(drei + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-  fernseher = 1;
-}
-
-void fvier() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(vier + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-  fernseher = 1;
-}
-
-void ffuenf() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(fuenf + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-  fernseher = 1;
-}
-
-void fsechs() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(sechs + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-  fernseher = 1;
-}
-
-void fsieben() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(sieben + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-  fernseher = 1;
-}
-
-void facht() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(acht + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-  fernseher = 1;
-}
-
-void fneun() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(neun + counter);
-  }
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-  fernseher = 1;
-}
-
-void fnull() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(zero + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-  fernseher = 1;
-}
-
-void fon() {
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(onoff + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-  fernseher = 1;
-}
-
-void foff() {
-
-  if (ps == 1) {
-    psoff();
-    delay(13000);
-    ps = 0;
-  }
-
-  if (fextt == 1) {
-    fint();
-    delay(1000);
-    fextt = 0;
-  }
-
-  for (counter = 0; counter < 67; counter++) {
-    senden[counter] = pgm_read_word_near(onoff + counter);
-  }
-
-  irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
-
-  fernseher = 0;
-}
-
-void flaut() {
-  ftools();
-  delay(1000);
-  if (ps == 0) {
-    frunter();
-    delay(500);
-    fenter();
-    delay(500);
-    frunter();
-    delay(500);
-    fenter();
-    delay(500);
-    freturn();
-  }
-
-  if (ps == 1) {
-    frunter();
-    delay(500);
-    frunter();
-    delay(500);
-    frunter();
-    delay(500);
-    frunter();
-    delay(500);
-    fenter();
-    delay(500);
-    frunter();
-    delay(500);
-    fenter();
-    delay(500);
-    freturn();
-  }
-}
-
-void fext() {
-  if (anlage == 0) {
-    aon();
-    delay(1000);
-  }
-  a20();
-  delay(500);
-  advd();
-  delay(500);
-  flaut();
-
-}
-
-void fint() {
-  flaut();
-  if (anlage == 1) {
-    aoff();
-    delay(200);
-  }
 }
 
 //playstation
@@ -585,7 +196,7 @@ void lichtt() {
 //Anlage
 
 void aon() {
-  for (counter = 0; counter < 67; counter++) {
+  for (counter = 0; counter < MAX_IR_LENGTH; counter++) {
     senden[counter] = pgm_read_word_near(tonoff + counter);
   }
   irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
@@ -604,7 +215,7 @@ void aoff() {
 
   advd();
   delay(500);
-  for (counter = 0; counter < 67; counter++) {
+  for (counter = 0; counter < MAX_IR_LENGTH; counter++) {
     senden[counter] = pgm_read_word_near(tonoff + counter);
   }
 
@@ -618,7 +229,7 @@ void aoff() {
 }
 
 void ash() {
-  for (counter = 0; counter < 67; counter++) {
+  for (counter = 0; counter < MAX_IR_LENGTH; counter++) {
     senden[counter] = pgm_read_word_near(tsourceh + counter);
   }
 
@@ -629,7 +240,7 @@ void ash() {
 }
 
 void asr() {
-  for (counter = 0; counter < 67; counter++) {
+  for (counter = 0; counter < MAX_IR_LENGTH; counter++) {
     senden[counter] = pgm_read_word_near(tsourcer + counter);
   }
 
@@ -700,7 +311,7 @@ void aaux() {
 }
 
 void alauter() {
-  for (counter = 0; counter < 67; counter++) {
+  for (counter = 0; counter < MAX_IR_LENGTH; counter++) {
     senden[counter] = pgm_read_word_near(tlauter + counter);
   }
 
@@ -711,7 +322,7 @@ void alauter() {
 }
 
 void aleiser() {
-  for (counter = 0; counter < 67; counter++) {
+  for (counter = 0; counter < MAX_IR_LENGTH; counter++) {
     senden[counter] = pgm_read_word_near(tleiser + counter);
   }
 
@@ -722,7 +333,7 @@ void aleiser() {
 }
 
 void amute() {
-  for (counter = 0; counter < 67; counter++) {
+  for (counter = 0; counter < MAX_IR_LENGTH; counter++) {
     senden[counter] = pgm_read_word_near(tstumm + counter);
   }
   irsend.sendRaw(senden, sizeof(senden) / sizeof(int), 40);
@@ -966,7 +577,7 @@ void loop() {
 
 
   //if(i==0){
-  //  for(int counter = 0; counter < 67; counter++)
+  //  for(int counter = 0; counter < MAX_IR_LENGTH; counter++)
   //{
   //  Serial.println(senden[counter]);
   //  i=1;
@@ -1155,8 +766,8 @@ void loop() {
 
     if (btData == "fernseher an" || binaer == 3) {
       if (leiste == 0) {
-        leiste = 1;
-        digitalWrite(l, 1);
+        leiste = PIN_PLUG_STRIP;
+        digitalWrite(PIN_PLUG_STRIP, 1);
         delay(2000);
       }
 
