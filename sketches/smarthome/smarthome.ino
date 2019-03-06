@@ -1,11 +1,11 @@
 #include <boarddefs.h>
-#include <IRremote.h>
-#include <IRremoteInt.h>
-#include <ir_Lego_PF_BitStreamEncoder.h>
 
 #include <SoftwareSerial.h>
 #include <avr/pgmspace.h>
 #include <String.h>
+
+#include "music_system.h"
+//#include "tv_control.h"
 
 //Definitions
 
@@ -19,89 +19,20 @@
 
 
 //Global Variables
-
+int anlage    = 0;
 int leiste    = 0;
 int bt        = 0;
 int fp        = 0;
-int anlage    = 0;
-int counter   = 0;
-int counter2  = 0;
-int counter3  = 0;
-int counter4  = 0;
 int fernseher = 0;
-int i         = 0;
 int ps        = 0;
-int fern      = 0;
-int record    = 0;
-int sender    = 0;
-int licht     = 0;
-int licht1    = 1;
-int volume    = 0;
-int vcounter  = 0;
-int dvd       = 1;
-int tape      = 0;
-int aux       = 0;
-int senden[MAX_IR_LENGTH];
-int al        = 50;
-int td        = 100;
-int fextt      = 0;
 int binaer    = 0b00000000;
 
 SoftwareSerial btSerial(rxPin, txPin);
 String btData;
 
-//Infrarot
-IRsend irsend;
+//Music control
+music_system music = music_system();
 int k = 2;   
-
-//Prototypes
-//music system
-void turnMusicsystemOn();
-void turnMusicsystemOff();
-void setSourceDVD();
-void setSourceAux();
-void setSourceTape();
-void sourceOneUp();
-void sourceOneDown();
-void volumeOneUp();
-void volumeOneDown();
-void setVolume(int);
-void setVolumeMute();
-//TV
-void fpon();
-void frec();
-void fleiser();
-void flauter();
-void fsource();
-void fmute();
-void fguide();
-void fsmarthub();
-void fhoch();
-void frunter();
-void frechts();
-void flinks();
-void ftools();
-void fenter();
-void fstop();
-void fplay();
-void fpause();
-void freturn();
-void finfo();
-void feins();
-void fzwei();
-void fdrei();
-void fvier();
-void ffuenf();
-void fsechs();
-void fsieben();
-void facht();
-void fneun();
-void fnull();
-void fon();
-void foff();
-void flaut();
-void fext();
-void fint();
 
 void readVoiceInput() {
   binaer = 0;
@@ -148,314 +79,314 @@ void loop() {
     //Anlage
     if (btData == "anlage an" || binaer == 19) {
       btSerial.println("Die Anlage wird angemacht");
-      turnMusicsystemOn();
+      music.turnMusicsystemOn();
     }
     if (btData == "anlage aus" || binaer == 20) {
-      turnMusicsystemOff();
+      music.turnMusicsystemOff();
       btSerial.println("Die Anlage wird ausgemacht");
     }
     if (btData == "source h" || binaer == 32) {
-      sourceOneUp();
+      music.sourceOneUp();
       btSerial.println("Source eins nach oben");
     }
     if (btData == "source r" || binaer == 31) {
-      sourceOneDown();
+      music.sourceOneDown();
       btSerial.println("Source eins nach unten");
     }
     if (btData == "dvd") {
       if (anlage == 0) {
-        turnMusicsystemOn();
+        music.turnMusicsystemOn();
         delay(2000);
       }
-      setSourceDVD();
+      music.setSourceDVD();
     }
     if (btData == "tape") {
       if (anlage == 0) {
-        turnMusicsystemOn();
+        music.turnMusicsystemOn();
         delay(2000);
       }
-      setSourceTape();
+      music.setSourceTape();
     }
     if (btData == "aux" || binaer == 23) {
       if (anlage == 0) {
-        turnMusicsystemOn();
+        music.turnMusicsystemOn();
         delay(2000);
       }
-      setSourceAux();
-      setVolume(30);
+      music.setSourceAux();
+      music.setVolume(30);
     }
     if (btData == "alauter") {
-      volumeOneUp();
+      music.volumeOneUp();
     }
     if (btData == "aleiser") {
-      volumeOneDown();
+      music.volumeOneDown();
     }
 
     if( btData == "amute"){
-      setVolumeMute();
-    }
-
-    if (btData == "ext" || binaer == 24) {
-
-      fext();
-      btSerial.println("Externe Lautsprächer");
-      fextt = 1;
-    }
-
-    if (btData == "int" || binaer == 25) {
-      fint();
-      fextt = 0;
-
+      music.setVolumeMute();
     }
 
     if(btData == "amax"){
-      setVolume(1);
+      music.setVolume(1);
     }
     if (btData == "a5" || binaer == 9) {
-      setVolume(5);
+      music.setVolume(5);
     }
     if (btData == "a10" || binaer == 10) {
-      setVolume(10);
+      music.setVolume(10);
     }
     if (btData == "a15" || binaer == 11) {
-      setVolume(15);
+      music.setVolume(15);
     }
     if (btData == "a20" || binaer == 12) {
-      setVolume(20);
+      music.setVolume(20);
     }
     if (btData == "a25" || binaer == 13) {
-      setVolume(25);
+      music.setVolume(25);
     }
     if (btData == "a30" || binaer == 14) {
-      setVolume(30);
+      music.setVolume(30);
     }
     if (btData == "a35" || binaer == 15) {
-      setVolume(35);
+      music.setVolume(35);
     }
     if (btData == "a40" || binaer == 16) {
-      setVolume(40);
+      music.setVolume(40);
     }
     if (btData == "a45" || binaer == 17) {
-      setVolume(45);
+      music.setVolume(45);
     }
     if (btData == "a50" || binaer == 18) {
-      setVolume(50);
-    }
-    
-    if (btData == "fernseher an" || binaer == 3) {
-      fon();
-      btSerial.println("Der Fernseher wird angemacht");
+      music.setVolume(50);
     }
 
-    if (btData == "fernseher aus" || binaer == 6) {
-      foff();
-      btSerial.println("Der Fernseher ist nun aus");
-    }
-
-    if (btData == "p0") {
-      fnull();
-      btSerial.println("0");
-    }
-
-    if (btData == "p1") {
-      feins();
-      btSerial.println("1");
-    }
-
-    if (btData == "p2") {
-      fzwei();
-      btSerial.println("2");
-    }
-
-    if (btData == "p3") {
-      fdrei();
-      btSerial.println("3");
-    }
-
-    if (btData == "p4") {
-      fvier();
-      btSerial.println("4");
-    }
-
-    if (btData == "p5") {
-      ffuenf();
-      btSerial.println("5");
-    }
-
-    if (btData == "p6") {
-      fsechs();
-      btSerial.println("6");
-    }
-
-    if (btData == "p7") {
-      fsieben();
-      btSerial.println("7");
-    }
-
-    if (btData == "p8") {
-      facht();
-      btSerial.println("8");
-    }
-
-    if (btData == "p9") {
-      fneun();
-      btSerial.println("9");
-    }
-
-    if (btData == "info") {
-      finfo();
-      btSerial.println("Info");
-    }
-
-    if (btData == "guide") {
-      fguide();
-      btSerial.println("Guide");
-    }
-
-    if (btData == "tools") {
-      ftools();
-      btSerial.println("Tools");
-    }
-
-    if (btData == "mute") {
-      fmute();
-      btSerial.println("Mute");
-    }
-
-    if (btData == "enter") {
-      fenter();
-      btSerial.println("Enter");
-    }
-
-    if (btData == "zurück" || btData == "return") {
-      freturn();
-      btSerial.println("zurück");
-    }
-
-    if (btData == "links") {
-      flinks();
-    }
-
-    if (btData == "rechts") {
-      frechts();
-    }
-
-    if (btData == "hoch") {
-      fhoch();
-    }
-
-    if (btData == "runter") {
-      frunter();
-    }
-
-    if (btData == "source") {
-      fsource();
-    }
-
-    if (btData == "pause") {
-      if (fernseher == 0)fon();
-      fpon();
-      delay(15000);
-      freturn();
-      delay(1000);
-      fpause();
-      record = 1;
-
-      btSerial.println("Pause");
-    }
-
-    if (btData == "play" && fernseher == 1 || binaer == 27) {
-      fplay();
-      btSerial.println("Play");
-    }
-
-    if (btData == "stop" && fernseher == 1) {
-      fstop();
-      record = 0;
-      btSerial.println("Stop");
-    }
-
-    if (btData == "-10" || btData == "-9" || btData == "-8" || btData == "-7" || btData == "-6" || btData == "-5" || btData == "-4" || btData == "-3" || btData == "-2" || btData == "-1" || btData == "1" || btData == "2" || btData == "3" || btData == "4" || btData == "5" || btData == "6" || btData == "7" || btData == "8" || btData == "9" || btData == "10") {
-      volume = atoi(btData.c_str());
-      switch (volume) {
-        case -10:
-          vcounter = 10;
-          break;
-        case -9:
-          vcounter = 9;
-          break;
-        case -8:
-          vcounter = 8;
-          break;
-        case -7:
-          vcounter = 7;
-          break;
-        case -6:
-          vcounter = 6;
-          break;
-        case -5:
-          vcounter = 5;
-          break;
-        case -4:
-          vcounter = 4;
-          break;
-        case -3:
-          vcounter = 3;
-          break;
-        case -2:
-          vcounter = 2;
-          break;
-        case -1:
-          vcounter = 1;
-          break;
-        case 1:
-          vcounter = 1;
-          break;
-        case 2:
-          vcounter = 2;
-          break;
-        case 3:
-          vcounter = 3;
-          break;
-        case 4:
-          vcounter = 4;
-          break;
-        case 5:
-          vcounter = 5;
-          break;
-        case 6:
-          vcounter = 6;
-          break;
-        case 7:
-          vcounter = 7;
-          break;
-        case 8:
-          vcounter = 8;
-          break;
-        case 9:
-          vcounter = 9;
-          break;
-        case 10:
-          vcounter = 10;
-          break;
-      }
-      if (volume > 0)flauter();
-      if (volume < 0)fleiser();
-    }
-
-    if (btData == "rec" && fernseher == 1) {
-      if (fp == 0) {
-        fpon();
-        delay(15000);
-        freturn();
-      }
-      fp = 1;
-      frec();
-    }
-
-    if (btData == "ppause" || binaer == 26) {
-      fpause();
-    }
+//
+//     if (btData == "ext" || binaer == 24) {
+//
+//      fext();
+//      btSerial.println("Externe Lautsprächer");
+//      fextt = 1;
+//    }
+//
+//    if (btData == "int" || binaer == 25) {
+//      fint();
+//      fextt = 0;
+//
+//    }
+//    if (btData == "fernseher an" || binaer == 3) {
+//      fon();
+//      btSerial.println("Der Fernseher wird angemacht");
+//    }
+//
+//    if (btData == "fernseher aus" || binaer == 6) {
+//      foff();
+//      btSerial.println("Der Fernseher ist nun aus");
+//    }
+//
+//    if (btData == "p0") {
+//      fnull();
+//      btSerial.println("0");
+//    }
+//
+//    if (btData == "p1") {
+//      feins();
+//      btSerial.println("1");
+//    }
+//
+//    if (btData == "p2") {
+//      fzwei();
+//      btSerial.println("2");
+//    }
+//
+//    if (btData == "p3") {
+//      fdrei();
+//      btSerial.println("3");
+//    }
+//
+//    if (btData == "p4") {
+//      fvier();
+//      btSerial.println("4");
+//    }
+//
+//    if (btData == "p5") {
+//      ffuenf();
+//      btSerial.println("5");
+//    }
+//
+//    if (btData == "p6") {
+//      fsechs();
+//      btSerial.println("6");
+//    }
+//
+//    if (btData == "p7") {
+//      fsieben();
+//      btSerial.println("7");
+//    }
+//
+//    if (btData == "p8") {
+//      facht();
+//      btSerial.println("8");
+//    }
+//
+//    if (btData == "p9") {
+//      fneun();
+//      btSerial.println("9");
+//    }
+//
+//    if (btData == "info") {
+//      finfo();
+//      btSerial.println("Info");
+//    }
+//
+//    if (btData == "guide") {
+//      fguide();
+//      btSerial.println("Guide");
+//    }
+//
+//    if (btData == "tools") {
+//      ftools();
+//      btSerial.println("Tools");
+//    }
+//
+//    if (btData == "mute") {
+//      fmute();
+//      btSerial.println("Mute");
+//    }
+//
+//    if (btData == "enter") {
+//      fenter();
+//      btSerial.println("Enter");
+//    }
+//
+//    if (btData == "zurück" || btData == "return") {
+//      freturn();
+//      btSerial.println("zurück");
+//    }
+//
+//    if (btData == "links") {
+//      flinks();
+//    }
+//
+//    if (btData == "rechts") {
+//      frechts();
+//    }
+//
+//    if (btData == "hoch") {
+//      fhoch();
+//    }
+//
+//    if (btData == "runter") {
+//      frunter();
+//    }
+//
+//    if (btData == "source") {
+//      fsource();
+//    }
+//
+//    if (btData == "pause") {
+//      if (fernseher == 0)fon();
+//      fpon();
+//      delay(15000);
+//      freturn();
+//      delay(1000);
+//      fpause();
+//      record = 1;
+//
+//      btSerial.println("Pause");
+//    }
+//
+//    if (btData == "play" && fernseher == 1 || binaer == 27) {
+//      fplay();
+//      btSerial.println("Play");
+//    }
+//
+//    if (btData == "stop" && fernseher == 1) {
+//      fstop();
+//      record = 0;
+//      btSerial.println("Stop");
+//    }
+//
+//    if (btData == "-10" || btData == "-9" || btData == "-8" || btData == "-7" || btData == "-6" || btData == "-5" || btData == "-4" || btData == "-3" || btData == "-2" || btData == "-1" || btData == "1" || btData == "2" || btData == "3" || btData == "4" || btData == "5" || btData == "6" || btData == "7" || btData == "8" || btData == "9" || btData == "10") {
+//      volume = atoi(btData.c_str());
+//      switch (volume) {
+//        case -10:
+//          vcounter = 10;
+//          break;
+//        case -9:
+//          vcounter = 9;
+//          break;
+//        case -8:
+//          vcounter = 8;
+//          break;
+//        case -7:
+//          vcounter = 7;
+//          break;
+//        case -6:
+//          vcounter = 6;
+//          break;
+//        case -5:
+//          vcounter = 5;
+//          break;
+//        case -4:
+//          vcounter = 4;
+//          break;
+//        case -3:
+//          vcounter = 3;
+//          break;
+//        case -2:
+//          vcounter = 2;
+//          break;
+//        case -1:
+//          vcounter = 1;
+//          break;
+//        case 1:
+//          vcounter = 1;
+//          break;
+//        case 2:
+//          vcounter = 2;
+//          break;
+//        case 3:
+//          vcounter = 3;
+//          break;
+//        case 4:
+//          vcounter = 4;
+//          break;
+//        case 5:
+//          vcounter = 5;
+//          break;
+//        case 6:
+//          vcounter = 6;
+//          break;
+//        case 7:
+//          vcounter = 7;
+//          break;
+//        case 8:
+//          vcounter = 8;
+//          break;
+//        case 9:
+//          vcounter = 9;
+//          break;
+//        case 10:
+//          vcounter = 10;
+//          break;
+//      }
+//      if (volume > 0)flauter();
+//      if (volume < 0)fleiser();
+//    }
+//
+//    if (btData == "rec" && fernseher == 1) {
+//      if (fp == 0) {
+//        fpon();
+//        delay(15000);
+//        freturn();
+//      }
+//      fp = 1;
+//      frec();
+//    }
+//
+//    if (btData == "ppause" || binaer == 26) {
+//      fpause();
+//    }
 
     if (btData == "hilfe" || btData == "help" || btData == "-h") {
       btSerial.println("-----------------------------------");
@@ -529,9 +460,5 @@ void loop() {
   }
 
   btData = "nichts";
-  counter = 0;
-  counter2 = 0;
-  counter3 = 0;
-  counter4 = 0;
   delay(100);
 }
