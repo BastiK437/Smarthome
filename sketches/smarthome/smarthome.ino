@@ -1,8 +1,8 @@
-#include <boarddefs.h>
+#include <boarddefs.h> //IRRemote librarie
 
 #include <SoftwareSerial.h>
 #include <avr/pgmspace.h>
-#include <String.h>
+//#include <String.h>
 
 #include "music_system.h"
 //#include "tv_control.h"
